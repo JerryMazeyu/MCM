@@ -18,6 +18,16 @@
       ]
     },
     {
+      "login": "ggxxding",
+      "name": "DMJ",
+      "avatar_url": "https://avatars.githubusercontent.com/u/33093699?v=4",
+      "profile": "https://github.com/ggxxding",
+      "contributions": [
+        "data",
+        "code"
+      ]
+    },
+    {
       "login": "LiangRichard13",
       "name": "RichardLiang",
       "avatar_url": "https://avatars.githubusercontent.com/u/102137852?v=4",
@@ -25,8 +35,7 @@
       "contributions": [
         "data",
         "code",
-        "video"
-      ]
+        "video"]
     }
   ],
   "contributorsPerLine": 7,
