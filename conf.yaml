@@ -1,0 +1,45 @@
+General:
+  root: "/home/ubuntu/PuyuanChallenge/Dist"
+  # os:
+  #   key: value
+
+LLMs:
+  InternLM2_20b:
+    version: "final"
+    weights_dict:
+      default: "internlm/internlm2-20b"
+      final: "src/backend/checkpoints/InternLM2_20b_chat_sft"
+    device: "cuda:0"
+
+VLMs:
+  MedDr:
+    version: "default"
+    weights_dict:
+      default: "src/backend/checkpoints/MedDr/model"
+    device: "cuda:1"
+
+RAGs:
+  RAG:
+    embeddings_path: "src/backend/checkpoints/sentence-transformer"
+    persist_directory: "src/data/retrieve_vector"
+    bm25retriever_path: "src/backend/checkpoints/bm25retriever/bm25retriever.pkl"
+    reranker_args:
+      model: "src/backend/checkpoints/bce-reranker-base_v1"
+      top_n: 5
+      device: "cuda:1"
+  GraphRAG:
+    backend: gpt-4o
+    choice: gpt-4o, internlm2
+    gpt-4o:
+      http_proxy: "localhost:7890"
+      https_proxy: "localhost:7890"
+      apikey: ""
+    Neo4j:
+      url: "neo4j://localhost:7687"
+      username: "neo4j"
+      password: "neo4jneo4j"
+
+Other:
+  translator:
+    SecretId: ""
+    SecretKey: ""
