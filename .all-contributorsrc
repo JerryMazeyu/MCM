@@ -1,0 +1,28 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "commitType": "docs",
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "JerryMazeyu",
+      "name": "JerryMa",
+      "avatar_url": "https://avatars.githubusercontent.com/u/38092672?v=4",
+      "profile": "https://github.com/JerryMazeyu",
+      "contributions": [
+        "design",
+        "data",
+        "ideas"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "skipCi": true,
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "projectName": "MCM",
+  "projectOwner": "JerryMazeyu"
+}
