@@ -8,14 +8,13 @@
   "commitConvention": "angular",
   "contributors": [
     {
-      "login": "JerryMazeyu",
-      "name": "JerryMa",
-      "avatar_url": "https://avatars.githubusercontent.com/u/38092672?v=4",
-      "profile": "https://github.com/JerryMazeyu",
+      "login": "tiezhuguangtailang",
+      "name": "tiezhuguangtailang",
+      "avatar_url": "https://avatars.githubusercontent.com/u/65181147?v=4",
+      "profile": "https://github.com/tiezhuguangtailang",
       "contributions": [
-        "design",
         "data",
-        "ideas"
+        "code"
       ]
     }
   ],

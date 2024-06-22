@@ -14,6 +14,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tbody>
     <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/tiezhuguangtailang"><img src="https://avatars.githubusercontent.com/u/65181147?v=4?s=100" width="100px;" alt="tiezhuguangtailang"/><br /><sub><b>tiezhuguangtailang</b></sub></a><br /><a href="#data-tiezhuguangtailang" title="Data">🔣</a> <a href="https://github.com/JerryMazeyu/MCM/commits?author=tiezhuguangtailang" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/JerryMazeyu"><img src="https://avatars.githubusercontent.com/u/38092672?v=4?s=100" width="100px;" alt="JerryMa"/><br /><sub><b>JerryMa</b></sub></a><br /><a href="#design-JerryMazeyu" title="Design">🎨</a> <a href="#data-JerryMazeyu" title="Data">🔣</a> <a href="#ideas-JerryMazeyu" title="Ideas, Planning, & Feedback">🤔</a></td>
     </tr>
   </tbody>
