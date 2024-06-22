@@ -1,7 +1,9 @@
 
 # MCM多模态中医问诊大模型
 
-<img src="https://jerrymazeyu.oss-cn-shanghai.aliyuncs.com/2024-06-22-logo_MCM-removebg-preview.png" style="zoom:50%;" />
+<div style="text-align: center;">
+  <img src="https://jerrymazeyu.oss-cn-shanghai.aliyuncs.com/2024-06-22-logo_MCM-removebg-preview.png" style="zoom:30%;" />
+</div>
 
 [![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
 
