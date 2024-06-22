@@ -107,4 +107,4 @@ python demo.py
 
 ## 🉑开源许可证 <a id="开源许可证"></a>
 
-该项目采用 [Apache License 2.0 开源许可证](https://github.com/AXYZdong/AMchat/blob/main/LICENSE) 同时，请遵守所使用的模型与数据集的许可证。
+该项目采用 [Apache License 2.0 开源许可证]() 同时，请遵守所使用的模型与数据集的许可证。
