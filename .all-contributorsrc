@@ -1,0 +1,27 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "commitType": "docs",
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "tiezhuguangtailang",
+      "name": "tiezhuguangtailang",
+      "avatar_url": "https://avatars.githubusercontent.com/u/65181147?v=4",
+      "profile": "https://github.com/tiezhuguangtailang",
+      "contributions": [
+        "data",
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "skipCi": true,
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "projectName": "MCM",
+  "projectOwner": "JerryMazeyu"
+}
