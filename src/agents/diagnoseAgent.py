@@ -67,7 +67,7 @@ class DiagnoseAgent(BaseAgent, ShowConfigMixin):
             prompt_history={"question": prompt, "history":self.HISTORY}
             rag_result = self.ragagent.execute("graphrag", prompt=prompt_history)
             # print(rag_result)
-        log(rag_result["result"], level="TOUSER")
+        log(rag_result["result"]['answer'], level="TOUSER")
         rag_result_str = self._prettify_rag_result(rag_result["result"])
         log(f"文档索引内容：{rag_result_str}")
         self.HISTORY.append((prompt, rag_result["result"]))
@@ -137,7 +137,6 @@ class DiagnoseAgent(BaseAgent, ShowConfigMixin):
         \t\t\t 根据知识图谱查询结果，主要的可能疾病为(已出现症状数 / 总症状数): {rag_res['reference']['structured_data'][1]};
         \t\t\t 知识图谱的查询过程为: {rag_res['reference']['structured_data'][0]};
         \t\t\t 从已有资料中，查询到的结果为: {rag_res['reference']['unstructured_data']};
-        \t\t\t 综上，回答为: {rag_res['answer']}
         """
         return res
     

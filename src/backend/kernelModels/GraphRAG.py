@@ -33,6 +33,7 @@ from pydantic import BaseModel, Extra
 import inspect
 from src.backend.kernelModels.InterLM2 import InternLM2_20b
 from src.config.InternLM2 import internlm220bconf
+from src.utils.io import suppress_stdout_stderr
 
 
 class GraphRAG(BaseLLM, LoaderMixin):
@@ -51,7 +52,7 @@ class GraphRAG(BaseLLM, LoaderMixin):
             os.environ["HTTP_PROXY"] = self.gpt4o['http_proxy']
             os.environ["HTTPS_PROXY"] = self.gpt4o['https_proxy']
             os.environ["OPENAI_API_KEY"] = self.gpt4o['apikey']
-            self.model = ChatOpenAI(model="gpt-4o", temperature=0)
+            self.ori_model = ChatOpenAI(model="gpt-4o", temperature=0)
         # self.struct_model = InternLM2_20b(internlm220bconf, version='chat')
         # self.struct_model.load_model()
 
@@ -85,13 +86,8 @@ class GraphRAG(BaseLLM, LoaderMixin):
 
     def structured_output(self, question):
         prompt= f"你的任务是从问题中提取疾病、症状和方剂，如果问题中没有提到则为None。问题：{question}"
-        # ，如果没有则为空
-        # {' '.join([x[0] for x in history])}
-        # model = ChatOpenAI(model="gpt-3.5-turbo-0125", temperature=0)
-        # model = ChatOpenAI(model="gpt-4o", temperature=0)
         struct_dict_keys = ["疾病", "症状", "方剂"]
-        # res=self.structify_output(self.struct_model, prompt, question, struct_dict_keys)
-        res=self.structify_output(self.model, prompt, question, struct_dict_keys)
+        res=self.structify_output(self.ori_model, prompt, question, struct_dict_keys)
         return res
 
     def structured_retriever(self, structured_list: list[str]) -> str:
@@ -188,9 +184,6 @@ class GraphRAG(BaseLLM, LoaderMixin):
                 )
                 for item in response:
                     result.append(item['output'])  # 三元组
-            # print("result", result)
-                    # MATCH (node {name:$disease})-[r:治疗]->(neighbor)-[t:用法用量]->(medicine)
-                    # RETURN node.name + ' - ' + type(r) + ' -> ' + neighbor.name + ' - ' + type(t) + ' -> ' + medicine.name AS output
 
         return result, diseases_probability
 
@@ -218,9 +211,6 @@ class GraphRAG(BaseLLM, LoaderMixin):
         # print("structured_data: ", structured_data)
         unstructured_data = self.uns_retriever.invoke(question)
         unstructured_texts = [el.page_content for el in unstructured_data]
-        # print("unstructured_texts: ", unstructured_texts)
-        # 将 unstructured_data 中的 Document 对象转换为字符串
-        # unstructured_texts = [doc.text for doc in unstructured_data]
 
         # 创建包含 structured_data 和 unstructured_texts 的字典
         reference = {
@@ -245,9 +235,6 @@ class GraphRAG(BaseLLM, LoaderMixin):
         return buffer
 
     def load_chain(self, llm, verbose=False):
-        # Condense a chat history and follow-up question into a standalone question
-        # 提取出所有症状，
-        # 给出以下对话历史和后续问题，。用中文总结成一个独立问题。用中文将后续问题改写为一个独立问题。
         _template = """给出以下对话历史和后续问题，理解对话历史和后续问题，用中文总结成一个独立问题。
         对话历史：
         {history}
@@ -272,15 +259,10 @@ class GraphRAG(BaseLLM, LoaderMixin):
                     history=lambda x: _format_chat_history(x["history"])
                 )
                 | CONDENSE_QUESTION_PROMPT
-                | self.model
-                # | ChatOpenAI(model="gpt-4o", temperature=0)
+                | self.ori_model
                 | StrOutputParser(),
             ),
-            # llm
-            # ChatOpenAI(model="gpt-3.5-turbo-0125", temperature=0)
-            # self.struct_model
-            # ChatOpenAI(model="gpt-4-1106-preview", temperature=0)
-            # Else, we have no chat history, so just pass through the question
+
             RunnableLambda(lambda x : x["question"]),
         )
 
@@ -295,19 +277,6 @@ class GraphRAG(BaseLLM, LoaderMixin):
 
         rag_prompt = PromptTemplate.from_template(template)
     
-        # # 返回source
-        # rag_chain_from_docs = (
-        # RunnablePassthrough.assign(context=(lambda x: self.str_reference(x["reference"])))
-        # | rag_prompt
-        # | llm
-        # | StrOutputParser()
-        # )
-
-        # rag_chain_with_source = RunnableParallel(
-        #     {"reference": self.retriever, "question": RunnablePassthrough()}
-        # ).assign(answer=rag_chain_from_docs)
-
-        # return rag_chain_with_source 
 
         rag_chain_from_docs = ( rag_prompt
         | llm
@@ -324,19 +293,6 @@ class GraphRAG(BaseLLM, LoaderMixin):
 
         return chain
 
-        # chain = (
-        #     RunnableParallel(
-        #         {
-        #             "reference": _search_query | self.retriever,
-        #             "question": RunnablePassthrough(),
-        #         }
-        #     )
-        #     | rag_prompt
-        #     | llm
-        #     | StrOutputParser()
-        # )
-
-        # return chain
 
     def str_reference(self, x):
         unstructured_str = "\n\n".join(doc.page_content for doc in x["unstructured_data"])
@@ -346,14 +302,18 @@ class GraphRAG(BaseLLM, LoaderMixin):
     def format_docs(self, docs):
         return "\n\n".join(doc.page_content for doc in docs)
     
-    def load_model(self, llm):
-        self.model = self.load_chain(llm)
+    def load_model(self, llm=None):
+        if not llm:
+            self.model = self.load_chain(self.ori_model)
+        else:
+            self.model = self.load_chain(llm)
     
     def _call(self, prompt):
         if not hasattr(self, 'model'):
             raise ValueError("Have not load model yet, please run llm.load_model() first!")
         else:
-            response = self.model.invoke(prompt)
+            with suppress_stdout_stderr():
+                response = self.model.invoke(prompt)
             # {"question": prompt, "history": history}
             # ['result']
             return response
