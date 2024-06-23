@@ -57,8 +57,9 @@ MCM(**M**ultimodal **C**hinese **M**edical LLM)是由上海计算机软件技术
 * 下载项目并添加路径
 
 ```shell
-git clone <GithubRepo>
+git clone https://github.com/JerryMazeyu/MCM.git
 export PYTHONPATH=\$PYTHONPATH:<Local Path>
+cd MCM
 ```
 
 * 安装Conda环境
