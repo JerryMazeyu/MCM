@@ -23,18 +23,6 @@ class LLMAgent(BaseAgent, ShowConfigMixin):
 
 
 
-if __name__ == "__main__":
-    import warnings
-    warnings.filterwarnings('ignore', category=UserWarning, message='TypedStorage is deprecated')
-    # from src.backend.kernelModels.InterLM2 import internlm220b  # 导入后端模型
-    # llmagent = LLMAgent(internlm220b)  
-    from src.backend.kernelModels.InterLM2 import internlm220b  # 导入后端模型
-    llmagent = LLMAgent(internlm220b)  # 实例化Agent
-    llmagent._show()  # 展示Agent的属性
-    print(llmagent.actions)  # 展示Agent已经实现的动作
-    llmagent.execute("chat", prompt="你好，很高兴认识你。", history=[])  # 执行动作
-    print(llmagent.context.content)  # 获得动作的结果
-    
 
 
 

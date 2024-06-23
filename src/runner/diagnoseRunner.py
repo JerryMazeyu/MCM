@@ -11,30 +11,6 @@ from src.agents.LLMAgent import LLMAgent
 from src.agents.MedDrAgent import MedDrAgent
 from src.agents.GraphRagAgent import GraphRagAgent
 
-# mock = MockAgent()
-
-# from src.backend.kernelModels.InterLM2 import internlm220b  # 导入llm模型
-# llm = internlm220b
-# llm.load_model()
-# from src.backend.kernelModels.GraphRAG import graphragllm  # 导入后端模型
-# graphragagent = GraphRagAgent(graphragllm, llm)  # 实例化Agent 
-# dagent = DiagnoseAgent(mock, mock, ragagent=graphragagent)
-
-# llmagent = LLMAgent(internlm220b) 
-
-# from src.backend.kernelModels.MedDr import meddr  # 导入后端模型
-# vlmagent = MedDrAgent(meddr)  # 实例化Agent
-# dagent = DiagnoseAgent(mock, vlmagent=vlmagent)
-# dagent = DiagnoseAgent(llmagent=llmagent, vlmagent=vlmagent, ragagent=graphragagent)
-
-
-
-# dagent.execute("_leadin")
-# res = dagent.execute("white_chat", prompt="你好")
-# print(res)
-# res = dagent.execute("ichat", prompt="Hello!")
-# print(dagent.HISTORY)
-# print(res)
 
 
 class DiagnoseRunner(BaseRunner):
