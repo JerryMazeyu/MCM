@@ -79,6 +79,13 @@ cd Dist/libs/neo4j-community-5.20.0/bin
 neo4j start
 ```
 
+* 修改配置文件
+```shell
+conf.yaml  # 所有的配置
+src/utils/translator.py  # 填写自己的SecretID和SecretKey
+```
+
+
 * 运行Demo
 
 ```shell

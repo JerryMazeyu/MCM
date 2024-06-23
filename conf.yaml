@@ -33,13 +33,13 @@ RAGs:
     gpt-4o:
       http_proxy: "localhost:7890"
       https_proxy: "localhost:7890"
-      apikey: ""
+      apikey: ""  # GPT Key
     Neo4j:
       url: "neo4j://localhost:7687"
       username: "neo4j"
       password: "neo4jneo4j"
 
-Other:
-  translator:
-    SecretId: ""
-    SecretKey: ""
+# Other:
+#   translator:
+#     SecretId: ""
+#     SecretKey: ""
