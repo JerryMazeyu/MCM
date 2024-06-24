@@ -92,7 +92,7 @@ src/utils/translator.py  # 填写自己的SecretID和SecretKey
 python demo.py
 ```
 
-![Demo演示](./演示Demo_1.gif)
+<img src="./src/assets/演示Demo_1.gif" alt="Demo演示" style="zoom:150%;" />
 
 ## 💕 项目成员 <a id="项目成员"></a>
 
