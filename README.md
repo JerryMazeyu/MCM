@@ -18,6 +18,7 @@
   - [🏓智能评测](#智能评测)
 
 - [🛠️ 使用方法](#使用方法)
+- [🎥 演示DEMO](#演示DEMO)
 - [💕 项目成员](#项目成员)
 - [🖊️ Citation](#Citation)
 - [🉑开源许可证](#开源许可证)
@@ -92,7 +93,12 @@ src/utils/translator.py  # 填写自己的SecretID和SecretKey
 python demo.py
 ```
 
+## 🎥 演示DEMO <a id="演示DEMO"></a>
 <img src="./src/assets/演示Demo_1.gif" alt="Demo演示" style="zoom:150%;" />
+
+<img src="./src/assets/决赛答辩demo_v1.gif" alt="Demo演示" style="zoom:150%;" />
+
+<img src="./src/assets/基于多模态医疗图像和对话上下文的诊断展示.gif" alt="Demo演示" style="zoom:150%;" />
 
 ## 💕 项目成员 <a id="项目成员"></a>
 
