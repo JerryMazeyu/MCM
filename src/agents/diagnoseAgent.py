@@ -155,8 +155,8 @@ class DiagnoseAgent(BaseAgent, ShowConfigMixin):
         ]
         for pattern in patterns:
             if re.search(pattern, text):
-                return True
-        return False
+                return False
+        return True
     
     def _check(self, text):
         patterns =[
